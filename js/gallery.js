@@ -83,14 +83,14 @@ const template = imagesTemplate(images);
 const ulElement = document.querySelector(".gallery");
 ulElement.insertAdjacentHTML("afterbegin",template);
 
+ulElement.addEventListener('click', imageClick);
+function imageClick(e) {
+  e.preventDefault();
+  if (e.target.nodeName !== "IMG"){
+    return;
+  }
+  console.log(e.target.dataset.source);
+  const instance = basicLightbox.create(`<img src="${e.target.dataset.source}" width="800" height="600"/>`);
+  instance.show();
+}
 
-/* <li class="gallery-item">
-<a class="gallery-link" href="large-image.jpg">
-<img
-class="gallery-image"
-src="small-image.jpg"
-data-source="large-image.jpg"
-alt="Image description"
-/>
-</a>
-</li> */
